@@ -36,7 +36,6 @@ class WeatherScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: Card(
-                  color: const Color.fromARGB(255, 40, 38, 38),
                   elevation: 10,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
@@ -50,7 +49,7 @@ class WeatherScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             Text(
-                              '303.5°F',
+                              '120.5°F',
                               style: TextStyle(
                                 fontSize: 32,
                                 fontWeight: FontWeight.bold,
@@ -87,11 +86,11 @@ class WeatherScreen extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    ForeCastCard(),
-                    ForeCastCard(),
-                    ForeCastCard(),
-                    ForeCastCard(),
-                    ForeCastCard(),
+                    ForeCastCard(icon: Icons.cloud, time: '3:01', value: "443.4"),
+                    ForeCastCard(icon: Icons.sunny, time: '3:01', value: "443.4"),
+                    ForeCastCard(icon: Icons.cloud, time: '3:01', value: "443.4"),
+                    ForeCastCard(icon: Icons.sunny, time: '3:01', value: "443.4"),
+                    ForeCastCard(icon: Icons.cloud, time: '3:01', value: "443.4"),
                   ],
                 ),
               ),
@@ -102,21 +101,9 @@ class WeatherScreen extends StatelessWidget {
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Column(spacing: 10, children: [
-                    Icon(Icons.water_drop , size: 32,),
-                    Text("Humidity" , style : TextStyle(fontSize: 18) ),
-                    Text("94" , style: TextStyle(fontSize : 20 , fontWeight: FontWeight.bold),),
-                  ]),
-                  Column(spacing: 10, children: [
-                    Icon(Icons.air_rounded , size: 32,),
-                    Text("Wind Speed" , style : TextStyle(fontSize: 18) ),
-                    Text("7.67" , style: TextStyle(fontSize : 20 , fontWeight: FontWeight.bold),),
-                  ]),
-                  Column(spacing: 10, children: [
-                    Icon(Icons.beach_access_rounded , size: 32,),
-                    Text("Humidity" , style : TextStyle(fontSize: 18) ),
-                    Text("1006" , style: TextStyle(fontSize : 20 , fontWeight: FontWeight.bold),),
-                  ]),
+                  AdditionalInfo(label: "Humidity", value: '74', icon: Icons.water_drop),
+                  AdditionalInfo(label: "Wind Speed", value: '7.67', icon: Icons.air_rounded),
+                  AdditionalInfo(label: "pressure", value: '1006', icon: Icons.beach_access),
                 ],
               ),
             ],
@@ -128,14 +115,16 @@ class WeatherScreen extends StatelessWidget {
 }
 
 class ForeCastCard extends StatelessWidget {
-  const ForeCastCard({super.key});
+  final String time;
+  final String value;
+  final IconData icon;
+  const ForeCastCard({super.key, required this.time, required this.value, required this.icon });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 100,
       child: Card(
-        color: const Color.fromARGB(255, 40, 38, 38),
         elevation: 10,
         child: Padding(
           padding: const EdgeInsets.only(top: 10, bottom: 10),
@@ -143,18 +132,44 @@ class ForeCastCard extends StatelessWidget {
             spacing: 10,
             children: [
               Text(
-                '03:30',
+                time,
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               Icon(
-                Icons.cloud,
+                icon,
                 size: 32,
               ),
-              Text('320.12')
+              Text(value)
             ],
           ),
         ),
       ),
     );
+  }
+}
+
+class AdditionalInfo extends StatelessWidget {
+  final String label;
+  final String value;
+  final IconData icon;
+
+  const AdditionalInfo(
+      {super.key,
+      required this.label,
+      required this.value,
+      required this.icon});
+  @override
+  Widget build(BuildContext context) {
+    return Column(spacing: 10, children: [
+      Icon(
+        icon,
+        size: 32,
+      ),
+      Text(label, style: TextStyle(fontSize: 18)),
+      Text(
+        value,
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      ),
+    ]);
   }
 }
