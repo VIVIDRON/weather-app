@@ -13,10 +13,11 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
+  final String cityName = 'Nashik';
   Future<Map<String, dynamic>> getCurrentWeather() async {
     try {
       final res = await http.get(Uri.parse(
-          'https://api.openweathermap.org/data/2.5/forecast?q=Nashik,IN&APPID=$weatherForeCastAPIKey'));
+          'https://api.openweathermap.org/data/2.5/forecast?q=$cityName,IN&APPID=$weatherForeCastAPIKey'));
       final data = jsonDecode(res.body);
       if (data['cod'] != '200') throw 'An unexpected error occured';
       return data;
@@ -69,6 +70,13 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   spacing: 25,
                   children: [
+                    Text(
+                      'City : $cityName',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     SizedBox(
                       width: double.infinity,
                       child: Card(
