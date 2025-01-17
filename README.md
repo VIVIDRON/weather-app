@@ -11,7 +11,7 @@ A simple, user-friendly weather application that provides real-time weather upda
 
 ## Video Preview
 
-![weather_app](https://github.com/user-attachments/assets/65f60865-5510-4c5e-9538-69264e4fc3e8)
+<img src="https://github.com/user-attachments/assets/65f60865-5510-4c5e-9538-69264e4fc3e8" alt="weather_app" width="300" height="650"/>
 
 ## Installation
 
