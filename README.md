@@ -54,21 +54,6 @@ A simple, user-friendly weather application that provides real-time weather upda
 - Register on OpenWeatherMap to get an API key.
 - Replace `YOUR_API_KEY` in the code with your actual API key.
 
-## Folder Structure
-
-```
-weather-app/
-├── lib/
-│   ├── main.dart           # Entry point of the app
-│   ├── screens/            # Contains all screen widgets
-│   ├── widgets/            # Reusable widgets like forecast cards
-│   ├── models/             # Data models for weather data
-│   └── services/           # API service logic
-├── assets/                 # Images and other static assets
-├── pubspec.yaml            # Project dependencies
-└── README.md               # Project documentation
-```
-
 ## Contributing
 
 Contributions are welcome! If you'd like to improve this project:
